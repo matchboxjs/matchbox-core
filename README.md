@@ -1,2 +1,2 @@
-matchbox-util
+matchbox-core
 =============
