@@ -1,10 +1,10 @@
 {
   "name": "matchbox-core",
   "version": "0.1.0",
-  "description": "The heart of every matchbox component",
+  "description": "The heart of matchbox",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/mocha/bin/mocha"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,11 @@
   },
   "homepage": "https://github.com/matchboxjs/matchbox-core#readme",
   "dependencies": {
-    "matchbox-internals": "matchboxjs/matchbox-internals",
-    "matchbox-util": "matchboxjs/matchbox-util"
+    "matchbox-internals": "^0.2.0",
+    "matchbox-util": "^0.3.0",
+    "mocha": "^2.3.1"
+  },
+  "devDependencies": {
+    "chai": "^3.2.0"
   }
 }
