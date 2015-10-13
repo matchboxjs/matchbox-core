@@ -21,10 +21,10 @@
   "homepage": "https://github.com/matchboxjs/matchbox-core#readme",
   "dependencies": {
     "matchbox-internals": "^0.2.0",
-    "matchbox-util": "^0.3.0",
-    "mocha": "^2.3.1"
+    "matchbox-util": "^0.3.0"
   },
   "devDependencies": {
-    "chai": "^3.2.0"
+    "chai": "^3.2.0",
+    "mocha": "^2.3.1"
   }
 }
