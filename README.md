@@ -1,2 +1,2 @@
-matchbox-core
-=============
+matchbox-factory
+================
