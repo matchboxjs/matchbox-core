@@ -38,9 +38,14 @@ function Blueprint( blocks, parent ){
 
 Blueprint.prototype.buildPrototype = function( prototype, top ){
   this.build("prototype", this.globalExtensions, top, function (name, extension, block) {
-    forIn(block, function( name, value ){
-      extension.initialize(prototype, name, value)
-    })
+    if (extension.loop) {
+      forIn(block, function( name, value ){
+        extension.initialize(prototype, name, value)
+      })
+    }
+    else {
+      extension.initialize(prototype, name, block)
+    }
   })
 }
 
@@ -53,19 +58,31 @@ Blueprint.prototype.buildCache = function( prototype, top ){
     var cache = prototype[name]
     var initialize = extension.initialize
 
-    forIn(block, function( name, value ){
+    if (extension.loop) {
+      forIn(block, function( name, value ){
+        cache[name] = initialize
+            ? initialize(prototype, name, value)
+            : value
+      })
+    }
+    else {
       cache[name] = initialize
-          ? initialize(prototype, name, value)
-          : value
-    })
+          ? initialize(prototype, name, block)
+          : block
+    }
   })
 }
 
 Blueprint.prototype.buildInstance = function( instance, top ){
   this.build("instance", this.localExtensions, top, function (name, extension, block) {
-    forIn(block, function( name, value ){
-      extension.initialize(instance, name, value)
-    })
+    if (extension.loop) {
+      forIn(block, function( name, value ){
+        extension.initialize(instance, name, value)
+      })
+    }
+    else {
+      extension.initialize(instance, name, block)
+    }
   })
 }
 

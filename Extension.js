@@ -6,4 +6,5 @@ function Extension(extension){
   this.type = extension.type || "instance"
   this.inherit = extension.inherit || false
   this.initialize = extension.initialize || null
+  this.loop = extension.loop == null ? true : extension.loop
 }

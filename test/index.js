@@ -119,6 +119,40 @@ describe("factory", function () {
   })
 
   describe("extension api", function () {
+    describe("loop option", function() {
+      test("loops", function(Base) {
+        var passedValue = {
+          test: "testValue"
+        }
+        factory({
+          constructor: Base,
+          extensions: {
+            customBlock: new factory.PrototypeExtension(function (prototype, name, value) {
+              assert.equal(name, "test")
+              assert.equal(value, "testValue")
+            })
+          },
+          customBlock: passedValue
+        })
+        var obj = new Base()
+      })
+      test("doesn't loop", function(Base) {
+        var passedValue = {
+          test: "testValue"
+        }
+        factory({
+          constructor: Base,
+          extensions: {
+            customBlock: new factory.PrototypeExtension({loop: false}, function (prototype, name, value) {
+              assert.equal(name, "customBlock")
+              assert.equal(value, passedValue)
+            })
+          },
+          customBlock: passedValue
+        })
+        var obj = new Base()
+      })
+    })
     describe("PrototypeExtension", function () {
       test("don't use on extension root if no block present", function () {
         var called = false
