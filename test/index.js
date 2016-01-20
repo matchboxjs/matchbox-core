@@ -16,6 +16,37 @@ function test (name, fn) {
 
 describe("factory", function () {
 
+  it("flat", function () {
+    factory({
+      include: [],
+      inherit: {},
+      augment: []
+    }, {
+      __aCacheDecorator: factory.decorateCache(),
+      __anInstanceDecorator: factory.decorateInstance(),
+      __aPrototypeDecorator: factory.decoratePrototype(),
+
+      __include: Include (Class1, Class2),
+      __inherit: Inherit (Class1, Class2),
+      __augment: Augment (Class1, Class2),
+
+      __aCache: Cache (),
+      __aCache: Cache (),
+
+      aStaticMember: Static (/* any value */),
+
+      aGetter: Getter (function () {}),
+      aSetter: Setter (function () {}),
+      anAccessor: Accessor ({get: function () {}, set: function () {}}),
+
+      constructor: function () {},
+      method1: function () {},
+      string: "",
+      number: 1,
+      boolean: false
+    })
+  })
+
   test("works without arguments", function () {
     factory()
   })
